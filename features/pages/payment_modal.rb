@@ -7,7 +7,11 @@ def self
 end
 
 def checkifexists
-	find('.expired-card-modal-wrapper')
+	find(getModalWindowClassName)
+end
+
+def getModalWindowClassName
+	return '.expired-card-modal-wrapper'
 end
 
 def updateCCInfo
@@ -19,7 +23,6 @@ end
 
 def remindLater
 	checkRemindLater.click
-#	find('a.cc-remind-later-link').click
 end
 
 def checkCCInfo

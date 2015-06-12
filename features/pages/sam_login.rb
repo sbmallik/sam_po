@@ -31,9 +31,9 @@ def logIn(auth_status="authorized",payment_status="no_expiration")
 	fill_in('username', :with => email)
 	fill_in('password', :with => "New1111")
 	find('.primary.left.last').click
-	if ['expired', 'lastpaymentfailed'].include?payment_status
+#	if ['expired', 'lastpaymentfailed'].include?payment_status
 		PaymentModal.new
-	end
+#	end
 end
 
 def logOut

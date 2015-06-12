@@ -23,8 +23,12 @@ Then(/^The user flyout displays$/) do
 	@flyout.verify
 end
 
-When(/^I click Login the flyout$/) do
+When(/^I click Login in the flyout$/) do
 	@login = @flyout.navLogin
+end
+
+When(/^I click Logout in the flyout$/) do
+	@login = @flyout.navLogout
 end
 
 Then(/^The Login page loads$/) do
@@ -36,9 +40,11 @@ When(/^I login with "(.*?)" account that is "(.*?)"$/) do |auth_status, payment_
 end
 
 Then(/^Update Your Payment Information modal displays$/) do
-#	expect(page).to have_css('div.expired-card-modal-wrapper')
-#	@ccmodal = PaymentModal.new
 	@ccmodal.checkifexists
+end
+
+Then(/^Update Your Payment Information modal should not display$/) do
+	expect(page).to have_no_css(@ccmodal.getModalWindowClassName)
 end
 
 Then(/^"(.*?)" link displays$/) do |arg1|
@@ -76,4 +82,17 @@ When(/^I click the cancel button in Change your payment page$/) do
 	@chgPI.clickCancel
 	page.driver.browser.close
 	page.driver.browser.switch_to.window @original_window
+end
+
+When(/^I click the (Previous|Next) asset navigation arrow$/) do | direction |
+	@sam.clickAssetNavigationArrow(direction)
+	wait_for_pageload
+end
+
+Then(/^The firefly flyout icon displays in the utility bar$/) do
+	@sam.checkFFFlyoutButton
+end
+
+Then(/^The firefly flyout icon does not displays in the utility bar$/) do
+	expect(page).to have_no_css(@sam.getFFFlyoutButtonClassName)
 end
