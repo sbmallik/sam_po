@@ -6,17 +6,16 @@ def self
     new
 end
 
-def verify
-    find('.section-validate')
+def visible?
+    page.has_css? '.section-validate'
 end
 
-def clickContinue
-    find('.primary.next').click
+def getContinueButtonElement
+	find('.primary.next')
 end
 
-def clickCancel
-    find('.tertiary').click
+def getCancelButtonElement
+	find('.tertiary')
 end
 
 end
-

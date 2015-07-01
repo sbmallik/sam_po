@@ -1,49 +1,41 @@
 class SamIntegrations
-extend Capybara::DSL
-include Capybara::DSL
+	extend Capybara::DSL
+	include Capybara::DSL
+	include RSpec::Matchers
 
-#def initialize(session)
-#	@session = session
-#end 
+#	def initialize(session)
+#		@session = session
+#	end 
 
-def self.visit(path_name)
-	page.visit ui_url path_name
-	new
-end
+	FIREFLY_BUTTON_CLASS = '.util-bar-btn-firefly'
 
-def checkPageLoad
-	find('#overlay div.transition-wrap article.asset')
-end
- 
-def checkHeadline
-	find('.asset-headline')
-end
+	def self.visit(path_name)
+		page.visit ui_url path_name
+		new
+	end
 
-def loginAvatar
-	find('.site-nav-firefly-link').hover
-	NavFlyout.new
-end
+	def displaying?
+		page.has_css? '#overlay div.transition-wrap article.asset'
+	end
 
-def getFFFlyoutButtonClassName
-	return '.util-bar-btn-firefly'
-end
+	def showing_firefly?
+		page.has_css? FIREFLY_BUTTON_CLASS
+	end
 
-def checkFFFlyoutButton
-	find(getFFFlyoutButtonClassName)
-end
+	def showing_no_firefly?
+		page.has_no_css? FIREFLY_BUTTON_CLASS
+	end
 
-def clickFFFlyoutButton
-	checkFFFlyoutButton.click
-	FireflyFlyout.new
-end
+	def getLoginAvatarElement
+		find('.site-nav-firefly-link')
+	end
 
-def clickAssetNavigationArrow(direction)
-	find(".overlay-content-arrows-#{direction.downcase}-wrap").click
-end
+	def getFFFlyoutButtonElement
+		find(FIREFLY_BUTTON_CLASS)
+	end
 
-def checkForFFFLyout
-	@fireflyFlyout = FireflyFlyout.new
-	@fireflyFlyout.getFlyoutClassName
-end
+	def getAssetNavigationArrowElement(direction)
+		find(".overlay-content-arrows-#{direction.downcase}-wrap")
+	end
 
 end

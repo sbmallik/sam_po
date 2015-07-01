@@ -1,35 +1,31 @@
 class PaymentModal
 extend Capybara::DSL
 include Capybara::DSL
+include RSpec::Matchers
 
 def self
 	new
 end
 
-def checkifexists
-	find(getModalWindowClassName)
+def visible?
+	page.has_css? '.expired-card-modal-wrapper'
 end
 
-def getModalWindowClassName
-	return '.expired-card-modal-wrapper'
+def invisible?
+	page.has_no_css? '.expired-card-modal-wrapper'
 end
 
-def updateCCInfo
-	@page_element = checkCCInfo
-	expected_url = @page_element[:href] 
-	@page_element.click
-	ChangePaymentInfo.new
-end
+#def updateCCInfo
+#	@page_element = getUpdateButtonElement
+#	expected_url = @page_element[:href] 
+#	@page_element.click
+#end
 
-def remindLater
-	checkRemindLater.click
-end
-
-def checkCCInfo
+def getUpdateButtonElement
 	find('.cc-payment-button')
 end
 
-def checkRemindLater
+def getRemindLaterButtonElement
 	find('.cc-remind-later-link')
 end
 

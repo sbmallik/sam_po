@@ -8,9 +8,8 @@ No thanks link closes modal
 Background:
 #	Given I have no browser cookies
 	Given I am on the USCP article page
-		And The asset headline displays
+		And The article page loads
 		And The firefly flyout icon displays in the utility bar
-#		And The article page loads
 	When I hover on the Login avatar
 	Then The user flyout displays
 	When I click Login in the flyout
@@ -26,7 +25,7 @@ Scenario: Update Payment modal displays
 	When I hover on the Login avatar
 	Then The user flyout displays
 	When I click Logout in the flyout
-	Then The asset headline displays
+	Then The article page loads
 
 @modal-displays-update
 Scenario: Update Payment displays and user updates credit card information
@@ -36,17 +35,19 @@ Scenario: Update Payment displays and user updates credit card information
 	Then The Change your payment page displays
 	When I click the cancel button in Change your payment page
 	Then The article page loads
+		And The firefly flyout icon does not displays in the utility bar
 	When I hover on the Login avatar
 	Then The user flyout displays
 	When I click Logout in the flyout
-	Then The asset headline displays
+	Then The article page loads
 
 @no-modal-display
 Scenario: No payment modal displays
 	When I login with "authorized" account that is "no_expiration"
 	Then Update Your Payment Information modal should not display
 	Then The article page loads
+		And The firefly flyout icon does not displays in the utility bar
 	When I hover on the Login avatar
 	Then The user flyout displays
 	When I click Logout in the flyout
-	Then The asset headline displays
+	Then The article page loads

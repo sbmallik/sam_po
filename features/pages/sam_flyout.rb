@@ -6,17 +6,16 @@ def self
 	new
 end
 
-def verify
-	find('.site-nav-firefly-dropdown')
+def visible?
+	page.has_css? '.site-nav-firefly-dropdown'
 end
 
-def navLogin
-	find('.firefly-signin-btn').click
-	LoginPage.new
+def getLoginButtonElement
+	find('.firefly-signin-btn')
 end
 
-def navLogout
-    find('.ff-logout-btn.sam-returns').click
+def getLogoutButtonElement
+    find('.ff-logout-btn.sam-returns')
 end
 
 end
