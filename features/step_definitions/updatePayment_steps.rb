@@ -4,7 +4,8 @@ Given(/^I have no browser cookies$/) do
 end
 
 Given(/^I am on the USCP article page$/) do #use article page to log in to avoid high impact ads
-	@sam = SamIntegrations.visit('/story/news/health/blogs/all-about-health/2014/11/19/would-it-kill-anyone-to-reduce-hospital-readmissions/2513067/?no_ads=1')
+	@sam = SamIntegrations.visit('/story/opinion/2014/12/15/new-metered-story-2/3743046/')
+#	@sam = SamIntegrations.visit('/story/news/health/blogs/all-about-health/2014/11/19/would-it-kill-anyone-to-reduce-hospital-readmissions/2513067/')
 #	@sam = SamIntegrations.new(Capybara.current_session)
 #	@sam.visit
 #	http://www.usatoday.com/?no_ads=1" to avoid ads on page
@@ -14,7 +15,7 @@ Then (/^The article page loads$/) do
 	expect(@sam).to be_displaying
 end
 
-When(/^I hover on the Login avatar$/) do
+When(/^I hover on the login avatar$/) do
 	@sam.getLoginAvatarElement.hover
 	@flyout = NavFlyout.new if @flyout.nil?
 end
