@@ -15,7 +15,7 @@ Then (/^The article page loads$/) do
 	expect(@sam).to be_displaying
 end
 
-When(/^I hover on the login avatar$/) do
+When(/^I hover on the Login avatar$/) do
 	@sam.getLoginAvatarElement.hover
 	@flyout = NavFlyout.new if @flyout.nil?
 end

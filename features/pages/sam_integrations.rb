@@ -22,13 +22,13 @@ class SamIntegrations
 		page.has_css? '#overlay div.transition-wrap article.asset'
 	end
 
-#	def showing_firefly?
-#		page.has_css? FIREFLY_BUTTON_CLASS
-#	end
+	def showing_firefly?
+		page.has_css? FIREFLY_BUTTON_CLASS
+	end
 
-#	def showing_no_firefly?
-#		page.has_no_css? FIREFLY_BUTTON_CLASS
-#	end
+	def showing_no_firefly?
+		page.has_no_css? FIREFLY_BUTTON_CLASS
+	end
 
 	def getAssetOverlayStatus
 		first('article.asset')
